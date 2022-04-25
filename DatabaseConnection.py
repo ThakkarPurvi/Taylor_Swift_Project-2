@@ -94,6 +94,7 @@ class DatabaseConnection(): # DatabaseManger or ConnectionDatabaseFactory
                 databases = []
                 for database in cur:
                     databases.append(database[0])
+                cur.close()
                 connection.close()
                 if self.database_name in databases:
                     return True
