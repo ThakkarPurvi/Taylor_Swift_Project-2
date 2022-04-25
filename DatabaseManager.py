@@ -18,10 +18,10 @@ class DatabaseManager():
             for row in result:
                 print(row)
 
-    def query_songs(self):
-        query = """ SELECT  m.PK_SongID, m.Spotify_ID,  m.Title from master_song_list m \
-                INNER JOIN key_words k on m.PK_SongID=k.FK_SongID \
-                where k.vibeID  = "IC" and k.SubjectID = "EX" \
+    def query_songs(self, vibe, subject):
+        query = """ SELECT  PK_SongID, Spotify_ID,  Title from master_song_list  \
+                INNER JOIN key_words  on PK_SongID=FK_SongID \
+                where vibeID  = "IC" and SubjectID = "EX" \
                 ORDER BY RAND() LIMIT 3; """
         cur = self.connection.cursor()
         cur.execute(query)
@@ -29,9 +29,33 @@ class DatabaseManager():
         cur.close()
         for row in results:
             print(row, type(row))
+        print(type(results))
+        return results
 
-    def create_playlist(self):
-        pass
+    def create_query(self, vibe, subject, nb_max_songs):
+        query = "SELECT  PK_SongID, Spotify_ID,  Title from master_song_list  \
+                INNER JOIN key_words  on PK_SongID=FK_SongID \
+                where vibeID  = %s and SubjectID = %s \
+                ORDER BY RAND() LIMIT %s;"
+        adr = (vibe, subject, nb_max_songs, )
+        cur = self.connection.cursor()
+        cur.execute(query, adr)
+        results = cur.fetchall()
+        cur.close()
+        for row in results:
+            print(row, type(row))
+        print(type(results))
+        return results
+
+
+    def create_playlist(self, vibe, subject, nb_max_songs):
+        results = self.create_query(vibe, subject, nb_max_songs)
+        playlist_title_list = []
+        playlist_spotify_id_list = []
+        for result in results:
+            print(result[2])
+            playlist_title_list.append(result[2])
+            playlist_spotify_id_list.append(result[1])
 
     def __ensure_table_exist(self, table_name):
         cur = self.connection.cursor()
