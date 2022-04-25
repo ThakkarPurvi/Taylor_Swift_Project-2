@@ -8,7 +8,7 @@ def main():
     database = DatabaseConnection(database_name)
     connection = database.create_connect()
     database_manager = DatabaseManager(connection)
-    database_manager.read_all_items_table(table_name)
+    database_manager.read_all_table_items(table_name)
     connection.close()
 
 if __name__ == "__main__":

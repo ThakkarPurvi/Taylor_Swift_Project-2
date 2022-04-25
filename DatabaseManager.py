@@ -8,7 +8,7 @@ class DatabaseManager():
         self.connection = connection
         #self.cur = self.connection.cursor()
 
-    def read_all_items_table(self, table_name):
+    def read_all_table_items(self, table_name):
         if self.__ensure_table_exist(table_name) is True:
             cur = self.connection.cursor()
             cur.execute("SELECT * FROM %s" % table_name)
