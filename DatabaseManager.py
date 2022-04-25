@@ -4,9 +4,9 @@ import sys
 
 class DatabaseManager(): 
 
-    def __init__(self, connection, playlist_length_limit):
+    def __init__(self, connection):
         self.connection = connection
-        self.playlist_length_limit = playlist_length_limit
+        #self.playlist_length_limit = playlist_length_limit
         #self.cur = self.connection.cursor()
 
     def read_all_table_items(self, table_name):
@@ -18,12 +18,20 @@ class DatabaseManager():
             for row in result:
                 print(row)
 
-    def join_table(self):
-        query = " SELECT  m.PK_SongID, m.Title from master_song_list m \
+    def query_songs(self):
+        query = """ SELECT  m.PK_SongID, m.Spotify_ID,  m.Title from master_song_list m \
                 INNER JOIN key_words k on m.PK_SongID=k.FK_SongID \
                 where k.vibeID  = "IC" and k.SubjectID = "EX" \
-                ORDER BY RAND() LIMIT 8; "
+                ORDER BY RAND() LIMIT 3; """
+        cur = self.connection.cursor()
+        cur.execute(query)
+        results = cur.fetchall()
+        cur.close()
+        for row in results:
+            print(row, type(row))
 
+    def create_playlist(self):
+        pass
 
     def __ensure_table_exist(self, table_name):
         cur = self.connection.cursor()
