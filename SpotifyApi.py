@@ -4,10 +4,10 @@ from config import CLIENT_ID, CLIENT_SECRET, AUTH_URL
 
 class Spotify():
     def __init__(self):
-        pass
+        self.auth_url = "https://accounts.spotify.com/api/token"
 
     def __get_token(self):
-        auth_response = requests.post(AUTH_URL, {
+        auth_response = requests.post(self.auth_url, {
                                                 'grant_type': 'client_credentials',
                                                 'client_id': CLIENT_ID,
                                                 'client_secret': CLIENT_SECRET,
@@ -30,6 +30,12 @@ class Spotify():
         response = requests.get(query,headers={"Content-Type": "application/json","Authorization": "Bearer {}".format(spotify_token)})
         response_json = response.json()
         print(response_json)
+
+    def check_response(self, response):
+        # check for valid response status
+        if response.status_code != 200:
+            raise ResponseException(response.status_code)
+
 
 
 
@@ -59,6 +65,6 @@ query = "https://api.spotify.com/v1/search?query=track%3A{}+artist%3A{}&type=tra
         )
 response = requests.get(query,headers={"Content-Type": "application/json","Authorization": "Bearer {}".format(spotify_token)})
 response_json = response.json()
-songs = response_json["tracks"]["items"]
-if songs == response_json:
-    print("response_json")
+songs = response_json["tracks"]["items"][0]["uri"]
+print(songs)
+
