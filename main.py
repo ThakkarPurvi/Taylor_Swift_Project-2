@@ -10,8 +10,8 @@ def main():
     database = DatabaseConnection(database_name)
     connection = database.create_connect()
     database_manager = DatabaseManager(connection)
-    database_manager.query_songs(vibe, subject)
-    database_manager.create_query(vibe,subject, 8)
+    database_manager.query_songs(vibe, subject, 3)
+    database_manager.create_query(vibe,subject, 1)
     connection.close()
 
 if __name__ == "__main__":
