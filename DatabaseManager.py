@@ -18,12 +18,15 @@ class DatabaseManager():
             for row in result:
                 print(row)
 
-    def query_songs(self, vibe, subject):
-        query = """ SELECT  PK_SongID, Spotify_ID,  Title from master_song_list  \
-                INNER JOIN key_words  on PK_SongID=FK_SongID \
-                where vibeID  = "IC" and SubjectID = "EX" \
-                ORDER BY RAND() LIMIT 3; """
+    def query_songs(self, vibe, subject, nb_max_songs):
+        query = """ 
+            SELECT  PK_SongID, Spotify_ID,  Title from master_song_list  \
+            INNER JOIN key_words  on PK_SongID=FK_SongID \
+            where vibeID  = '{vibe_id}' and SubjectID = '{subject_id}' \
+            ORDER BY RAND() LIMIT {nb_max_songs}; 
+            """.format(vibe_id=vibe, subject_id=subject ,nb_max_songs=nb_max_songs)
         cur = self.connection.cursor()
+        # add try handle error expection
         cur.execute(query)
         results = cur.fetchall()
         cur.close()
@@ -31,6 +34,7 @@ class DatabaseManager():
             print(row, type(row))
         print(type(results))
         return results
+
 
     def create_query(self, vibe, subject, nb_max_songs):
         query = "SELECT  PK_SongID, Spotify_ID,  Title from master_song_list  \
