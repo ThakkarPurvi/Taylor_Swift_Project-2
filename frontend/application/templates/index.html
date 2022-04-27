@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block body %}
+    {% for userprofile in userprofiles %}
+    <table>
+        <h3>ID: {{ userprofile["id"] }}</h3>
+        <h3>Name: {{ userprofile["name"] }}</h3>
+        <br><button type="button" onclick="window.location.href='{{ url_for('update_userprofile', id=userprofile.id) }}';">Update UserProfile </button>&nbsp;
+        <button type="button" onclick="window.location.href='{{ url_for('delete_userprofile', id=userprofile.id) }}';">Delete UserProfile </button><br><br>
+    </table>
+    <h3>Songs of {{ userprofile["name"] }}</h3>
+    <table>
+        {% for song in userprofile["songs"] %}
+        <tr>
+            <td><h3>Category: {{ song["song_category"] }}</td></h3>
+        </tr>
+        <tr>
+            <td><h3>Description: {{ song["song_description"] }}</td></h3>
+        </tr>
+            <br><button type="button" onclick="window.location.href='{{ url_for('update_song', id=song.id) }}';">Update Song </button>&nbsp;
+            <button type="button" onclick="window.location.href='{{ url_for('delete_song', id=userprofile.id) }}';">Delete Song </button><br><br>
+
+        {% endfor %}
+    </table>
+
+    {% endfor %}
+{% endblock body %}

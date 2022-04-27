@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  frontend:
+    build: ./frontend
+    image: tpurv/final_project_taylor_swift-frontend:latest
+    container_name: final_project_taylor_swift_frontend
+    ports:
+    - target: 5000
+      published: 80
+  backend:
+    build: ./backend
+    image: tpurv/final_project_taylor_swift-backend:latest
+    container_name: final_project_taylor_swift_backend
+    environment:
+      DATABASE_URI:
+      CREATE_SCHEMA:
+    ports:
+    - target: 5000
+      published: 5000 

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<form method="POST">
+    <table>
+        <tr>
+            <td>{{ form.song_category.label }}</td>
+            <td>{{ form.song_category }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.song_description.label }}</td>
+            <td>{{ form.song_description }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.userprofile.label }}</td>
+            <td>{{ form.userprofile }}</td>
+        </tr>
+    </table>
+    {{ form.submit }}
+    {{ form.hidden_tag() }}
+</form>
+
+{% endblock body %}

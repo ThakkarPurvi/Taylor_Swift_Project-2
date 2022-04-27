@@ -1,0 +1,22 @@
+{% extends "layout.html"%}
+
+{% block body %}
+
+<b>Current Song: </b> {{ song.song_description }}
+<br>
+<hr>
+<hr>
+
+<div class='form'>
+    <form method='POST' action=''>
+        {{ form.hidden_tag() }}
+        {{ form.song_description.label }} {{ form.song_description }}
+        {{ form.song_category.label }} {{ form.song_category }}
+        {{ form.submit }}
+        <br>
+
+
+    </form>
+</div>
+
+{% endblock body %}
