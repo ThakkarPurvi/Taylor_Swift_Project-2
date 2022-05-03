@@ -3,6 +3,7 @@
 
 #creat the classes:
 
+
 class UserInput:
     def __init__(self,question, options, answer_for_sql):
         self.question = question
@@ -43,7 +44,7 @@ class Query:
         pass
 
     def get_query(self):
-        query = "SELECT #whatspotifyneeds# from master_song_list m INNER JOIN key_words k on m.PK_SongID=k.FK_SongID where k.vibeID = " + third_question.query_input + " and k.SubjectID = " + second_question.query_input + "ORDER BY RAND() LIMIT 8;"
+        query = "SELECT #whatspotifyneeds# from master_song_list m INNER JOIN key_words k on m.PK_SongID=k.FK_SongID where k.vibeID = " + third_question.query_input + " and k.SubjectID = " + second_question.query_input + " ORDER BY RAND() LIMIT 8;"
         print(query)
 
 # define the questions
@@ -64,16 +65,21 @@ first_question.get_answer()
 if first_question.answer == "1":
     query = "#SQL QUERY FOR RANDOM PLAYLIST"
     print(query)
+    quit()
+
 if first_question.answer == "2":
     query = ""#SQL QUERY FOR ME PLAYLIST"
     print(query)
+    #add in exit programm bit
+    quit()
+
 if first_question.answer == "3":
     second_question.ask_question()
     second_question.get_answer()
     second_question.answer_for_query()
     third_question.ask_question()
     third_question.get_answer()
-    second_question.answer_for_query()
+    third_question.answer_for_query()
     new_query.get_query()
 else:
     print("Please enter a valid option number")
