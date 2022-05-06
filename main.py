@@ -44,7 +44,7 @@ class Query:
         pass
 
     def get_query(self):
-        query = "SELECT #whatspotifyneeds# from master_song_list m INNER JOIN key_words k on m.PK_SongID=k.FK_SongID where k.vibeID = " + third_question.query_input + " and k.SubjectID = " + second_question.query_input + " ORDER BY RAND() LIMIT 8;"
+        query = """SELECT #whatspotifyneeds# from master_song_list m INNER JOIN key_words k on m.PK_SongID=k.FK_SongID where k.vibeID = " + third_question.query_input + " and k.SubjectID = " + second_question.query_input + " and k.TimeID = " + fourth_question.query_input + " ORDER BY RAND() LIMIT 8;"""
         print(query)
 
 # define the questions
@@ -53,8 +53,10 @@ second_answer = {"1":"CP", "2":"EX", "3":"ND"}
 second_question = UserInput("\nI got you. Who is this about then?", {"1. My current partner": "1", "2. My ex": "2", "3. So we've never actually dated but...":"3"}, second_answer)
 third_answer = {"1":"P", "2":"N", "3":"IC"}
 third_question = UserInput("\nHow do you feel about them?", {"1. Great!":"P", "2. Ugh I hate them": "N", "3. It's complicated...": "IC"}, third_answer)
-new_query = Query()
+fourth_answer = {"1": "L", "2":"S"}
+fourth_question = UserInput("\nHow long did it last/has it been going on for?", {"1.Quite a while":"L", "2.Not long":"S"}, fourth_answer)
 
+new_query = Query()
 
 
 #question order and logic
@@ -80,6 +82,9 @@ if first_question.answer == "3":
     third_question.ask_question()
     third_question.get_answer()
     third_question.answer_for_query()
+    fourth_question.ask_question()
+    fourth_question.get_answer()
+    fourth_question.answer_for_query()
     new_query.get_query()
 else:
     print("Please enter a valid option number")
