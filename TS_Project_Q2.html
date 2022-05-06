@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 1</title>
+</head>
+<body>
+<h2> The Story of Us - Taylor Swift Mix</h2>
+
+<p class="pt-5"><strong>{{ message }}</strong></p>
+
+</body>
+</html>
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+{{ super() }}
+	<style>
+		body { background: #e39ff6; }
+	</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+
+      <h1 class="pt-5 pb-2">Q2. I got you, babe. Who's it about?</h1>
+
+      <p class="lead"> 1. My current partner</p>
+        <p class="lead"> 2. My ex</p>
+        <p class="lead">3. So we never actually dated but...</p>
+
+      {{ wtf.quick_form(form) }}
+
+      <p class="pt-5"><strong>{{ message }}</strong></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
