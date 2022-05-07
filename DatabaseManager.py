@@ -21,7 +21,6 @@ class DatabaseManager():
         cur.execute(query)
         results = cur.fetchall()
         cur.close()
-        print(query)
         print(results)
         return results
     
@@ -36,8 +35,6 @@ class DatabaseManager():
         cur.execute(query)
         results = cur.fetchall()
         cur.close()
-        print(query)
-        print(results)
         return results
     
     def create_personalized_playlist(self, vibe, subject, nb_max_songs):
@@ -53,6 +50,7 @@ class DatabaseManager():
         list_of_songs = {}
         for result in results:
             list_of_songs[result[2]] = result[1]
+        print(list_of_songs)
         return list_of_songs
     
     def ensure_table_exist(self, table_name):

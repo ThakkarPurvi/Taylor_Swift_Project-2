@@ -22,7 +22,7 @@ def main():
     if is_table_in_db is True:
         taylor_questions = TaylorQuestions(questions_taylor, options_taylor)
         user = UserInput(taylor_questions)
-        factory = Factory(user, database_manager, options_taylor)
+        factory = Factory(user, database_manager)
         factory.handle_question()
     connection.close()
 
