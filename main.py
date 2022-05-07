@@ -1,17 +1,29 @@
 from DatabaseConnection import DatabaseConnection
 from DatabaseManager import DatabaseManager
+from Questions import Questions
+from TaylorQuestions import TaylorQuestions
+from Taylor_questions_stored import questions_taylor, options_taylor, options_selection
+from UserInput import UserInput
+from Factory import Factory
 
+
+"""
+Create an automated tailored Taylor Swift playlist.
+
+"""
 
 def main():
     database_name = "taylor_swift_project"
     table_name = "master_song_list"
-    vibe = "IC"
-    subject = "EX"
     database = DatabaseConnection(database_name)
     connection = database.create_connect()
     database_manager = DatabaseManager(connection)
-    database_manager.query_songs(vibe, subject, 3)
-    database_manager.create_query(vibe,subject, 1)
+    is_table_in_db = database_manager.ensure_table_exist(table_name)
+    if is_table_in_db is True:
+        taylor_questions = TaylorQuestions(questions_taylor, options_taylor)
+        user = UserInput(taylor_questions)
+        factory = Factory(user, database_manager, options_taylor)
+        factory.handle_question()
     connection.close()
 
 if __name__ == "__main__":
