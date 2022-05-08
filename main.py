@@ -23,7 +23,8 @@ def main():
         taylor_questions = TaylorQuestions(questions_taylor, options_taylor)
         user = UserInput(taylor_questions)
         factory = Factory(user, database_manager)
-        factory.handle_question()
+        songs = factory.handle_question()
+        print(songs)
     connection.close()
 
 if __name__ == "__main__":

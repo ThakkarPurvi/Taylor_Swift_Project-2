@@ -27,4 +27,3 @@ class TaylorQuestions(Questions):
     
     def get_number_of_options(self):
         return len(self.options)
-    

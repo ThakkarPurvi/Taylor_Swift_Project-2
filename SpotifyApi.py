@@ -1,5 +1,8 @@
 import requests
-from config import CLIENT_ID, CLIENT_SECRET, AUTH_URL 
+import json
+import base64
+from config import CLIENT_ID, CLIENT_SECRET, TOKEN_URL,AUTH_URL, SCOPE, SCOPE2, SPOTIFY_REDIRECT_URI, TOKEN
+from requests.structures import CaseInsensitiveDict
 
 
 class Spotify():
@@ -43,12 +46,16 @@ class Spotify():
 
 
 # POST
-auth_response = requests.post(AUTH_URL, {
-    'grant_type': 'client_credentials',
+auth_response = requests.get(AUTH_URL, {
+     'response_type': 'code',
     'client_id': CLIENT_ID,
-    'client_secret': CLIENT_SECRET,
+    'scope': SCOPE,
+    'redirect_uri': SPOTIFY_REDIRECT_URI
 })
 
+print(auth_response.url)
+
+"""
 # convert the response to JSON
 auth_response_data = auth_response.json()
 
@@ -68,3 +75,4 @@ response_json = response.json()
 songs = response_json["tracks"]["items"][0]["uri"]
 print(songs)
 
+"""

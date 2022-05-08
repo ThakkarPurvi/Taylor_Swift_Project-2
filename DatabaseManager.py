@@ -21,7 +21,6 @@ class DatabaseManager():
         cur.execute(query)
         results = cur.fetchall()
         cur.close()
-        print(results)
         return results
     
     def _query_random_songs(self, nb_max_songs):
