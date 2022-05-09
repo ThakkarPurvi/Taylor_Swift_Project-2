@@ -14,5 +14,5 @@ TOKEN = "BQABi-j7uAsjOuRe2XQjidRB_JJj56E_i9BO6abxaobFdaWN_U_i68S5gXlhmjfKJcOo3Nh
 
 
 SPOTIFY_REDIRECT_URI = 'http://127.0.0.1:5000/spotifycallback' # change in the future for FLASK URL
-SCOPE = "playlist-modify-private user-read-private"
-SCOPE2 = "playlist-modify-public"
+SCOPE = "user-read-private playlist-modify-private  playlist-modify-public"
+SCOPE2 = "playlist-modify-private  playlist-modify-public"

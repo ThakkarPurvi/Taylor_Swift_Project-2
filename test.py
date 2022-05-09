@@ -41,13 +41,12 @@ class Spotify2():
         
     def get_user_id(self):
         url = "https://api.spotify.com/v1/me"
-        spotify_token = self.__get_token()
-        #spotify_auth = self.__get_auth()
-        spotify_token = "BQCdUfjU7SjjshWPSunQuHycdbBY48PN9ctvQXCZb1qHVLoRq7yo3-b0q3xREgOEXag2Gh3-rGRRT6gvu-5rUuFCwpZISWCJ-eyftqlUOqbmPXmK75xzjvqitqwfFP0UfYxA_MWYsiaU5gHVcM8-C2021JJb23FKWlySg1j0_C4_ZpiH_TuWl0BocY1Vh-LxLbPmqvFBtTTJ7SjN5dgy8uop_ci54aeI2pWMqdm1lnNy8NONJO9f"
+        #spotify_token = self.__get_token()
+        spotify_auth = "BQBuMz-olPOz2JiFtK-91pWLWwIoDdaA_69WlMaEBehKEMfk794-KkiHONhhJ4ygYJ1vYg9OwRLZtWcb33yaObUTZGEhbJIwwAGjGyXGtMNdhVEA0vAgQuJqeAA7-NjiAZg1-k_-KP3VpSnhh8L7w0kBtomOTSKQXSwbwTuzZVyYVa3UEZorffv19RkiWMS81UvSbLr2pb-eYU7mHPvA9qgi4RgkxQ2Hl0FQ0lCb7DyxWg"
         headers = CaseInsensitiveDict()
         headers["Accept"] = "application/json"
         headers["Content-Type"] = "application/json"
-        headers["Authorization"] = "Bearer {}".format(spotify_token)
+        headers["Authorization"] = "Bearer {}".format(spotify_auth)
         resp = requests.get(url, headers=headers)
         print(resp.status_code)
         if resp.status_code == 200:

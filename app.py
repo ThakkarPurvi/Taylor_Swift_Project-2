@@ -11,11 +11,20 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
     if request.method == 'POST':
-        if request.form.get('action1') == 'VALUE1':
+        if request.form.get('action1') == 'START':
             #redirect(url_for(q1.html))
             return render_template('q1.html')
-        elif request.form.get('action2') == 'VALUE2':
-            print("no")
+        elif request.form.get('action2') == 'Feedback':
+            auth_response = requests.get(AUTH_URL, {
+                                                    'response_type': 'code',
+                                                    'client_id': CLIENT_ID,
+                                                    'scope': SCOPE,
+                                                    'redirect_uri': SPOTIFY_REDIRECT_URI,
+                                                    'state': 'state'
+                                                })
+
+            print(auth_response.url, type(auth_response.url))
+            return redirect(auth_response.url)
         else:
             print("maybe")
     elif request.method == 'GET':
@@ -23,12 +32,35 @@ def hello_world():
     
     return render_template("index.html")
 
-@app.route('/spotifycallback', methods=["GET"])
+@app.route('/spotifycallback', methods=["GET", "POST"])
 def spotifycallback():
-    code = request.args.get('code')
-    state = request.args.get('state')
-    auth = {'code': code, 'state': state}
-    return auth
+    if request.method == 'POST':
+        access_token = request.args.get('access_token')
+        refresh_token = request.args.get('refresh_token')
+        expires_in = request.args.get('expires_in')
+        tokens = {'access_token': access_token, 'refresh_token': refresh_token, 'expires_in':expires_in}
+        return tokens
+    elif request.method == 'GET':
+        code = request.args.get('code')
+        state = request.args.get('state')
+        auth = {'code': code, 'state': state}
+        authorization = requests.post(
+                                    "https://accounts.spotify.com/api/token",
+                                    auth=(CLIENT_ID, CLIENT_SECRET),
+                                    data={
+                                        "grant_type": "authorization_code",
+                                        "code": code,
+                                        "redirect_uri": SPOTIFY_REDIRECT_URI,
+                                    },        
+                                )
+        a = authorization.json()
+        access_token = a['access_token']
+        refresh_token = a['refresh_token']
+        expires_in = a['expires_in']
+        q = {'access_token': access_token, 'refresh_token': refresh_token, 'expires_in ': expires_in }
+        return q
+    else :
+        return "yes"
 
 @app.route('/q1', methods=["GET"])
 def test():

@@ -47,10 +47,11 @@ class Spotify():
 
 # POST
 auth_response = requests.get(AUTH_URL, {
-     'response_type': 'code',
+    'response_type': 'code',
     'client_id': CLIENT_ID,
     'scope': SCOPE,
-    'redirect_uri': SPOTIFY_REDIRECT_URI
+    'redirect_uri': SPOTIFY_REDIRECT_URI,
+    'state': 'state'
 })
 
 print(auth_response.url)
