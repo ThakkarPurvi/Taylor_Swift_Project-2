@@ -4,7 +4,7 @@ import base64
 from config import CLIENT_ID, CLIENT_SECRET, TOKEN_URL,AUTH_URL, SCOPE, SCOPE2, SPOTIFY_REDIRECT_URI, TOKEN
 from requests.structures import CaseInsensitiveDict
 
-class Spotify():
+class Spotify2():
     def __init__(self):
         self.token_url = TOKEN_URL
         self.artist = "Taylor Swift"
@@ -42,6 +42,8 @@ class Spotify():
     def get_user_id(self):
         url = "https://api.spotify.com/v1/me"
         spotify_token = self.__get_token()
+        #spotify_auth = self.__get_auth()
+        spotify_token = "BQCdUfjU7SjjshWPSunQuHycdbBY48PN9ctvQXCZb1qHVLoRq7yo3-b0q3xREgOEXag2Gh3-rGRRT6gvu-5rUuFCwpZISWCJ-eyftqlUOqbmPXmK75xzjvqitqwfFP0UfYxA_MWYsiaU5gHVcM8-C2021JJb23FKWlySg1j0_C4_ZpiH_TuWl0BocY1Vh-LxLbPmqvFBtTTJ7SjN5dgy8uop_ci54aeI2pWMqdm1lnNy8NONJO9f"
         headers = CaseInsensitiveDict()
         headers["Accept"] = "application/json"
         headers["Content-Type"] = "application/json"
@@ -49,9 +51,10 @@ class Spotify():
         resp = requests.get(url, headers=headers)
         print(resp.status_code)
         if resp.status_code == 200:
-            user_id = resp["id"]
+            resp_json = resp.json()
+            user_id = resp_json["id"]
+            print(user_id)
             return user_id
-        print(resp)
   
     def get_song_uri2(self, song_name):
         spotify_token = self.__get_token()
@@ -70,4 +73,4 @@ class Spotify():
             return song_uri
         
 
-a = Spotify().get_user_id()
+a = Spotify2().get_user_id()

@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 import requests
 import json
 import base64
@@ -12,7 +12,8 @@ app = Flask(__name__)
 def hello_world():
     if request.method == 'POST':
         if request.form.get('action1') == 'VALUE1':
-            print("yes")
+            #redirect(url_for(q1.html))
+            return render_template('q1.html')
         elif request.form.get('action2') == 'VALUE2':
             print("no")
         else:
@@ -29,13 +30,23 @@ def spotifycallback():
     auth = {'code': code, 'state': state}
     return auth
 
-@app.route('/question1', methods=["GET"])
+@app.route('/q1', methods=["GET"])
 def test():
     return(request.args.get("name"))
 
-@app.route('/question2', methods=["GET"])
+@app.route('/q2', methods=["GET"])
 def handle_question2():
     pass
+
+@app.route('/q3', methods=["GET"])
+def handle_question3():
+    pass
+
+@app.route('/q4', methods=["GET"])
+def handle_question4():
+    pass
+
+
 """
     if answer =='ME':
         return redirect(url_for('login'))
