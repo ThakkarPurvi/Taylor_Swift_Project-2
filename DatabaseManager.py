@@ -40,16 +40,14 @@ class DatabaseManager():
         results = self._query_songs(vibe, subject, nb_max_songs)
         list_of_songs = []
         for result in results:
-            list_of_songs.append(result[1])
-        print(list_of_songs)
+            list_of_songs.append(result[2])
         return list_of_songs
             
     def create_random_playlist(self, nb_max_songs):
         results = self._query_random_songs(nb_max_songs)
-        list_of_songs = {}
+        list_of_songs = []
         for result in results:
-            list_of_songs[result[2]] = result[1]
-        print(list_of_songs)
+            list_of_songs.append(result[2])
         return list_of_songs
     
     def ensure_table_exist(self, table_name):

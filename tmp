@@ -1,7 +1,0 @@
-https://accounts.spotify.com/authorize?client_id=348b2144fa4f49b0a31fd2db53d0f27b&redirect_uri=http://www.google.com&response_type=code
-
-https://accounts.spotify.com/authorize?response_type=code&client_id=348b2144fa4f49b0a31fd2db53d0f27b&scope=playlist-modify-private&redirect_uri=http%3A%2F%2Fwww.google.com%2F
-
-
-http%3A%2F%2Fwww.google.com%2F
-http://www.google.com

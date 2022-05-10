@@ -1,10 +1,9 @@
 from flask import Flask, request, render_template, redirect, url_for
 import requests
 import json
-import base64
 from config import CLIENT_ID, CLIENT_SECRET, TOKEN_URL,AUTH_URL, SCOPE, SCOPE2, SPOTIFY_REDIRECT_URI, TOKEN
-from test import Spotify2
 from SpotifyApi import Spotify
+
 
 app = Flask(__name__)
 
@@ -13,9 +12,10 @@ app = Flask(__name__)
 def hello_world():
     if request.method == 'POST':
         if request.form.get('action1') == 'START':
-            #redirect(url_for(q1.html))
             return render_template('q1.html')
         elif request.form.get('action2') == 'Feedback':
+            return render_template('feedback.html')
+        elif request.form.get('action3') == 'Spotify':
             auth_response = requests.get(AUTH_URL, {
                                                     'response_type': 'code',
                                                     'client_id': CLIENT_ID,
@@ -27,7 +27,7 @@ def hello_world():
             print(auth_response.url, type(auth_response.url))
             return redirect(auth_response.url)
         else:
-            print("maybe")
+            print("something wrong")
     elif request.method == 'GET':
         return render_template('index.html')
     
@@ -65,6 +65,7 @@ def handle_question3():
 @app.route('/q4', methods=["GET"])
 def handle_question4():
     pass
+
 
 @app.route('/playlist', methods=['GET', 'POST'])
 def add_playlist_spotify():

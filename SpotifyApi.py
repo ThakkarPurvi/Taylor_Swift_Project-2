@@ -74,12 +74,11 @@ class Spotify():
         
     def get_playlist_id(self, user_id, spotify_token):
         request_body = json.dumps({
-            "name": "Test1",
-            "description": "Python Project test",
+            "name": "Taylor Swift Playlist",
+            "description": "Python Project 2 CFG",
             "public": False
         })
         query = "https://api.spotify.com/v1/users/{}/playlists".format(user_id)
-
         response = requests.post(
                     query,
                     data=request_body,
@@ -96,7 +95,6 @@ class Spotify():
     
     def add_song(self, songs, playlist_id, spotify_token):
         url = "https://api.spotify.com/v1/playlists/"+playlist_id+"/tracks?position=0&uris="+songs
-
         headers = CaseInsensitiveDict()
         headers["Accept"] = "application/json"
         headers["Content-Type"] = "application/json"
@@ -104,24 +102,5 @@ class Spotify():
         headers["Content-Length"] = "0"
         resp = requests.post(url, headers=headers)
         print(resp.status_code)
-                
-        
-        
-        """
-        request_data =  "{'uris': [%s],'position': 0}" %songs
-        request_data = json.dumps(request_data)
-        query = "https://api.spotify.com/v1/playlists/{}/tracks".format(
-            playlist_id)
-        response = requests.post(
-            query,
-            headers={
-                "Accept" : "application/json",
-                "Content-Type": "application/json",
-                "Authorization": "Bearer {}".format(spotify_token),
-                "Content-Length": "0"
-            }
-        )
-        response_json = response.json()
-        print(response_json)
-"""
+
 
