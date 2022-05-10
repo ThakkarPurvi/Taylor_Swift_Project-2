@@ -44,7 +44,8 @@ def spotifycallback():
         spotify_token = auth_spotify_token['access_token']
         user_id = spotify.get_user_id(auth_spotify_token['access_token'])
         playlist_id =  spotify.get_playlist_id(user_id, spotify_token)
-        song_uri=  spotify.get_song_uri()
+        song_uri = spotify.get_song_uri()
+        a = spotify.add_song(song_uri, playlist_id, spotify_token)
         return song_uri
     else :
         return render_template("index.html")

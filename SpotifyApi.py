@@ -62,7 +62,7 @@ class Spotify():
         song_name3 = "The Very First Night (Taylor's Version) (From The Vault)"
         song_name2 = self.songs_name[0]
         query = "https://api.spotify.com/v1/search?query=track%3A{}+artist%3A{}&type=track&offset=0&limit=20".format(
-                    song_name3,
+                    song_name2,
                     self.artist
                 )
         response = requests.get(query,headers={"Content-Type": "application/json","Authorization": "Bearer {}".format(spotify_token)})
@@ -72,7 +72,6 @@ class Spotify():
             song_uri = response_json["tracks"]["items"][0]["uri"]
             return song_uri
         
-  
     def get_playlist_id(self, user_id, spotify_token):
         request_body = json.dumps({
             "name": "Test1",
@@ -94,4 +93,35 @@ class Spotify():
         playlist_id = response_json["id"]
         print("playlist id: ", playlist_id)
         return playlist_id
+    
+    def add_song(self, songs, playlist_id, spotify_token):
+        url = "https://api.spotify.com/v1/playlists/"+playlist_id+"/tracks?position=0&uris="+songs
+
+        headers = CaseInsensitiveDict()
+        headers["Accept"] = "application/json"
+        headers["Content-Type"] = "application/json"
+        headers["Authorization"] = "Bearer {}".format(spotify_token)
+        headers["Content-Length"] = "0"
+        resp = requests.post(url, headers=headers)
+        print(resp.status_code)
+                
+        
+        
+        """
+        request_data =  "{'uris': [%s],'position': 0}" %songs
+        request_data = json.dumps(request_data)
+        query = "https://api.spotify.com/v1/playlists/{}/tracks".format(
+            playlist_id)
+        response = requests.post(
+            query,
+            headers={
+                "Accept" : "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer {}".format(spotify_token),
+                "Content-Length": "0"
+            }
+        )
+        response_json = response.json()
+        print(response_json)
+"""
 
