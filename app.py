@@ -43,10 +43,10 @@ def spotifycallback():
         auth_spotify_token = spotify.get_token(code)
         spotify_token = auth_spotify_token['access_token']
         user_id = spotify.get_user_id(auth_spotify_token['access_token'])
-        playlist_id =  spotify.get_playlist_id(user_id, spotify_token)
+        playlist_id = spotify.get_playlist_id(user_id, spotify_token)
         song_uri = spotify.get_song_uri()
-        a = spotify.add_song(song_uri, playlist_id, spotify_token)
-        return song_uri
+        spotify.add_song(song_uri, playlist_id, spotify_token)
+        return "check your spotify"
     else :
         return render_template("index.html")
 
@@ -90,16 +90,5 @@ def add_playlist_spotify():
         return render_template('playlist.html')
     return "ok"
 
-
-
-
-"""
-    if answer =='ME':
-        return redirect(url_for('login'))
-    elif answer = "OTHER":
-        
-    else:
-        return redirect(url_for('question3'))
-"""
 if __name__ == '__main__':
     app.run(debug = True)
