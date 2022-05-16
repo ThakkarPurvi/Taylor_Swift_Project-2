@@ -10,8 +10,12 @@ option_3_selection = {"1":"CP", "2":"EX", "3":"ND"}
 fourth_question = "\nHow do you feel about them?\n"
 option_4_display = {"1. Great!":"P", "2. Ugh I hate them": "N", "3. It's complicated...": "IC"}
 option_4_selection = {"1":"P", "2":"N", "3":"IC"}
+fifth_question = "\nHow long have they been rent free living in your mind?\n"
+option_5_display = {"1. Not long":"S", "2. A while": "L"}
+option_5_selection = {"1":"S", "2":"L"}
 
 
-questions_taylor = [first_question, second_question, third_question, fourth_question]
-options_taylor = [option_1_display , option_2_display , option_3_display , option_4_display]
-options_selection = [option_1_selection ,option_2_selection, option_3_selection ,option_4_selection]
+
+questions_taylor = [first_question, second_question, third_question, fourth_question, fifth_question]
+options_taylor = [option_1_display , option_2_display , option_3_display , option_4_display , option_5_display]
+options_selection = [option_1_selection ,option_2_selection, option_3_selection ,option_4_selection , option_5_selection]
