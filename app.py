@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for
 import requests
 import json
-from config import CLIENT_ID, CLIENT_SECRET, TOKEN_URL,AUTH_URL, SCOPE, SCOPE2, SPOTIFY_REDIRECT_URI, TOKEN
+from config import CLIENT_ID, CLIENT_SECRET, TOKEN_URL,AUTH_URL, SCOPE, SPOTIFY_REDIRECT_URI
 from SpotifyApi import Spotify
 from Taylor_questions_stored import questions_taylor, options_taylor
 from DatabaseConnection import DatabaseConnection
@@ -34,7 +34,6 @@ def handle_question1():
     elif request.method == 'POST':
         if request.form.get('1') == '1.':
             model = Model()
-            print("here too")
             global songs 
             songs = model.get_songs(None)
             print(songs)
@@ -109,8 +108,7 @@ def spotifycallback():
         user_id = spotify.get_user_id(auth_spotify_token['access_token'])
         playlist_id = spotify.get_playlist_id(user_id, spotify_token)
         for song in songs:
-            print(song)
-            song_uri = spotify.get_song_uri(song)
+            song_uri = spotify.get_song_uri(song, spotify_token)
             spotify.add_song(song_uri, playlist_id, spotify_token)
         return "check your spotify"
     else :
@@ -134,9 +132,8 @@ def add_playlist_spotify():
         else:
             print("Something got wrong")
     elif request.method == 'GET':
-        # displya playlist
         return render_template('playlist.html')
-    return "ok"
+    return render_template('playlist.html')
 
 if __name__ == '__main__':
     app.run(debug = True)
