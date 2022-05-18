@@ -8,7 +8,7 @@ class Model:
         self.table_name = "master_song_list"
         self.database_manager = None
         self.connection = None
-        self.nb_songs = 5
+        self.nb_songs = 8
         
     def _create_object_database(self):
         database = DatabaseConnection(self.database_name)
@@ -24,14 +24,15 @@ class Model:
             else:
                 vibe = answer["vibe"]
                 subject = answer["subject"]
-                songs = self._get_personalized_songs(vibe, subject)
+                time = answer["time"]
+                songs = self._get_personalized_songs(vibe, subject, time)
             self.connection.close()
             return songs
         self.connection.close()
         return None
 
-    def _get_personalized_songs(self, vibe, subject):
-        return self.database_manager.create_personalized_playlist(vibe, subject, self.nb_songs)
+    def _get_personalized_songs(self, vibe, subject, time):
+        return self.database_manager.create_personalized_playlist(vibe, subject, time, self.nb_songs)
     
     def _get_random_songs(self):
         return self.database_manager.create_random_playlist(self.nb_songs)

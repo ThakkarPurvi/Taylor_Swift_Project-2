@@ -16,7 +16,7 @@ songs = []
 @app.route('/', methods=['GET', 'POST'])
 def start_playlist():
     if request.method == 'POST':
-        if request.form.get('action1') == 'START':
+        if request.form.get('action1') == 'Start':
             return redirect(url_for('handle_question1'))
         elif request.form.get('action2') == 'Feedback':
             return render_template('feedback.html')
@@ -29,7 +29,7 @@ def start_playlist():
 def handle_question1():
     if request.method == 'GET':
         question1 = questions_taylor[0]
-        options= options_taylor[0].items()
+        options = options_taylor[0].items()
         return render_template("q1.html",question1 = question1, options = options)
     elif request.method == 'POST':
         if request.form.get('1') == '1.':
@@ -53,7 +53,7 @@ def handle_question2():
         answer = {"subject": None}
         if request.form.get("ME") == "ME":
             answer["subject"] = "ME"
-            return redirect(url_for('handle_question4', answer = answer))
+            return redirect(url_for('handle_question5', answer = answer))
         elif request.form.get('OTHER') == "OTHER":
             return redirect(url_for('handle_question3'))
         else:
@@ -69,23 +69,36 @@ def handle_question3():
         return render_template("q3.html",question3 = question3, options = options)
     elif request.method == 'POST':
         answer = {"subject": None}
-        answer["subject"]= request.form.get('action3')
+        answer["subject"] = request.form.get('action3')
         return redirect(url_for('handle_question4', answer = answer))
     return redirect(url_for('start_playlist'))
 
-@app.route('/q4/<answer>/', methods=['GET','POST'])
-def handle_question4(answer):
+@app.route('/q4/', methods=['GET','POST'])
+def handle_question4():
     index = 3
     if request.method == 'GET':
         question4 = questions_taylor[index]
         options= options_taylor[index].items()
-        url_question4_arg = "http://127.0.0.1:5000/q4/" + answer + "/"
-        return render_template("q4.html",question4 = question4, options = options, url_question4_arg=url_question4_arg)
+        return render_template("q4.html",question4=question4, options=options)
     elif request.method == 'POST':
-        vibe = request.form.get('action4')
+        answer = {"vibe": None}
+        answer["vibe"] = request.form.get('action4')
+        return redirect(url_for('handle_question5', answer=answer))
+    return redirect(url_for('start_playlist'))
+
+@app.route('/q5/<answer>/', methods=['GET','POST'])
+def handle_question5(answer):
+    index = 4
+    if request.method == 'GET':
+        question5 = questions_taylor[index]
+        options = options_taylor[index].items()
+        url_question5_arg = "http://127.0.0.1:5000/q5/" + answer + "/"
+        return render_template("q5.html",question5 = question5, options = options, url_question5_arg=url_question5_arg)
+    elif request.method == 'POST':
+        time = request.form.get('action5')
         json_acceptable_string = answer.replace("'", "\"")
-        answer = json.loads(json_acceptable_string)          
-        answer["vibe"] = vibe
+        answer = json.loads(json_acceptable_string)
+        answer["time"] = time
         model = Model()
         songs = model.get_songs(answer)
         return render_template("playlist.html", songs = songs)
