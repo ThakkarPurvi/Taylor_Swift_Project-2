@@ -110,6 +110,7 @@ def spotifycallback():
         for song in songs:
             song_uri = spotify.get_song_uri(song, spotify_token)
             spotify.add_song(song_uri, playlist_id, spotify_token)
+            print(user_id)
         return "check your spotify"
     else :
         return render_template("index.html")

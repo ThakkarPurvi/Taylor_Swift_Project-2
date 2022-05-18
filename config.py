@@ -8,4 +8,4 @@ TOKEN_URL = "https://accounts.spotify.com/api/token"
 AUTH_URL = "https://accounts.spotify.com/authorize"
 
 SPOTIFY_REDIRECT_URI = 'http://127.0.0.1:5000/spotifycallback' # change in the future for FLASK URL
-SCOPE = "user-read-private playlist-modify-private  playlist-modify-public"
+SCOPE = "user-read-private playlist-modify-private playlist-modify-public"

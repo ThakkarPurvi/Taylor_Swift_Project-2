@@ -1,7 +1,7 @@
 import requests
 import json
 import base64
-from config import CLIENT_ID, CLIENT_SECRET, TOKEN_URL, AUTH_URL, SCOPE, SPOTIFY_REDIRECT_URI
+from config import CLIENT_ID, CLIENT_SECRET, TOKEN_URL, SPOTIFY_REDIRECT_URI
 from requests.structures import CaseInsensitiveDict
 
 
@@ -9,7 +9,6 @@ class Spotify():
     def __init__(self):
         self.token_url = TOKEN_URL
         self.artist = "Taylor Swift"
-        #self.userID = "yj46x5ujbzvzvwlxfidiwxwt8"
     
     def get_token(self, code):
         authorization = requests.post(
@@ -29,7 +28,6 @@ class Spotify():
             auth_spotify_token = {'access_token': access_token, 'refresh_token': refresh_token, 'expires_in ': expires_in }
             return auth_spotify_token
         else:
-            print("here", auth_token)
             return None
     
     def get_user_id(self, spotify_auth):
@@ -42,10 +40,9 @@ class Spotify():
         if resp.status_code == 200:
             resp_json = resp.json()
             user_id = resp_json["id"]
-            print(user_id)
             return user_id
         else:
-            print("error id user")
+            return None
     
     def get_song_uri(self, song, spotify_token):
         song_name = song
@@ -59,7 +56,6 @@ class Spotify():
             song_uri = response_json["tracks"]["items"][0]["uri"]
             return song_uri
         else:
-            print("uri error")
             return None
         
     def get_playlist_id(self, user_id, spotify_token):
@@ -83,7 +79,6 @@ class Spotify():
             playlist_id = response_json["id"]
             return playlist_id
         else:
-            print(response)
             return None
     
     def add_song(self, song, playlist_id, spotify_token):

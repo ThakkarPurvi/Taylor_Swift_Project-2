@@ -8,7 +8,7 @@ class Model:
         self.table_name = "master_song_list"
         self.database_manager = None
         self.connection = None
-        self.nb_songs = 1
+        self.nb_songs = 3
         
     def _create_object_database(self):
         database = DatabaseConnection(self.database_name)
