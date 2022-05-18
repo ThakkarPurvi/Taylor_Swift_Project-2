@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+{%extends "layout.html"%}
+
+{%block content%}
+
+<!-- Question 4 -->
+
+<h3>Question 4 <h3/>
+    <h4>{{ question4 }}</h4>
+    <form method="post" action="{{url_question4_arg}}">
+        {% for key, value in options%}
+        <p>{{ key }}</p>
+        <p>{{ value}}</p>
+        <input type="submit" value={{ value }} name= 'action4' />
+        {% endfor %}
+    </form>
+
+
+
+{%endblock%}

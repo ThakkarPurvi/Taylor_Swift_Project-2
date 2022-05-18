@@ -1,5 +1,10 @@
-<h3>Our Flask Buttons<h3/>
-    <form method="post" action="/">
-        <input type="submit" value="Spotify" name="action2"/>
-        <input type="submit" value="Feedback" name="action1" />
-    </form>
+<h3>Playlist<h3/>
+    {% for song in songs%}
+    <p>{{song}}</p>
+    {% endfor %}
+
+    <h3>Our Flask Buttons<h3/>
+        <form method="post" action="/playlist">
+            <input type="submit" value="Feedback" name="action1" />
+            <input type="submit" value="Spotify" name="action2" />
+        </form>
