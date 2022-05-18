@@ -6,12 +6,15 @@
 
 <!-- Question 2 -->
 
+<h2> The Story of Us - Taylor Swift Mix</h2>
+
+
 <h3>Question 2 <h3/>
     <h4>{{ question2 }}</h4>
     <form method="post" action="http://127.0.0.1:5000/q2/">
         {% for key, value in options%}
         <p>{{ key }}</p>
-        <input type="submit" value={{ value }} name={{ value }} />
+        <input type="submit" class="btn btn-outline-light btn-lg" value={{ value }} name={{ value }} />
         {% endfor %}
     </form>
 

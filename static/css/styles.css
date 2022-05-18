@@ -18,8 +18,8 @@ h1 {
 /* Title */
   
 .container-fluid-title {
-    padding-top:  18%;
-    padding-bottom: 8%;
+    padding-top:  16%;
+    padding-bottom: 6%;
     padding-left: 3%;
     padding-right: 3%;
   }
@@ -29,6 +29,26 @@ h1 {
     font-size: 2.0em;
     font-weight: 600;
   }
+
+  .container-fluid-form {
+    padding-bottom: 8%;
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+
+.btn-group-lg .btn, .btn-lg {
+    padding: .5em 1.2em;
+    font-size: 0.7em;
+    border-radius: .5em;
+}
+
+.btn {
+
+    font-weight: 500;
+    border: 2px solid;
+
+}
+
 
 
 
