@@ -8,18 +8,25 @@ class Model:
         self.table_name = "master_song_list"
         self.database_manager = None
         self.connection = None
-        self.nb_songs = 5
+        self.nb_songs = 8
         
     def _create_object_database(self):
+        print("par ici")
         database = DatabaseConnection(self.database_name)
+        print("et par la")
         self.connection = database.create_connect()
+        print("la")
         self.database_manager = DatabaseManager(self.connection)
+        
         
     def get_songs(self, answer):
         self._create_object_database()
+        print("la2")
         is_table_in_db = self.database_manager.ensure_table_exist(self.table_name)
+        print(is_table_in_db)
         if is_table_in_db is True:
             if answer is None:
+                print("par la")
                 songs = self._get_random_songs()
             else:
                 vibe = answer["vibe"]

@@ -34,8 +34,10 @@ def handle_question1():
     elif request.method == 'POST':
         if request.form.get('1') == '1.':
             model = Model()
+            print("here too")
             global songs 
             songs = model.get_songs(None)
+            print(songs)
             return render_template("playlist.html", songs = songs)
         elif request.form.get('2') == '2.':
             return redirect(url_for('handle_question2'))
@@ -87,6 +89,7 @@ def handle_question4(answer):
         answer = json.loads(json_acceptable_string)          
         answer["vibe"] = vibe
         model = Model()
+        global songs 
         songs = model.get_songs(answer)
         return render_template("playlist.html", songs = songs)
 
