@@ -1,6 +1,22 @@
+<!DOCTYPE html>
 
-<h3>Our Flask Buttons<h3/>
+{%extends "layout.html"%}
+
+{%block content%}
+
+<!-- Title -->
+<section id="title">
+    <div class="container-fluid-title ">
+        <h1 class="title-heading"> The Story of Us - Taylor Swift Mix</h1>
+        <p>Create the perfect Taylor Swift playlist for your last relationship</p>
+    </div>
+  </section>
+
     <form method="post" action="/">
+        <h3>Let's Begin (Again) (Taylor's Version)<h3/>
         <input type="submit" value="START" name="action1"/>
+        <h3>Share your feedback here<h3/>
         <input type="submit" value="Feedback" name="action2" />
     </form>
+
+{%endblock%}
