@@ -67,7 +67,6 @@ class DatabaseConnection(): # DatabaseManger or ConnectionDatabaseFactory
             raise DatabaseConnectionError("Failed to read data from DB")
         finally:
             if connection:
-                print("Connected to DB: %s" % self.database_name )
                 return connection
             else:
                 sys.exit("Failed to read data from DB \nExit Program")  

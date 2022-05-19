@@ -1,10 +1,23 @@
-<h3>Playlist<h3/>
+<!DOCTYPE html>
+
+{%extends "layout.html"%}
+
+{%block content%}
+
+
+<h2>These are the songs on your playlist! <h2/>
     {% for song in songs%}
-    <p>{{song}}</p>
+    <h3>{{song}}</h3>
     {% endfor %}
 
-    <h3>Would you like to add your playlist on Spotify or give us some feedback?<h3/>
         <form method="post" action="/playlist">
-            <input type="submit" value="Feedback" name="action1" />
-            <input type="submit" value="Spotify" name="action2" />
+            <p>Would you like to add your playlist on Spotify ?<p/>
+            <input type="submit" class="btn btn-outline-light btn-lg" value="Spotify" name="action2" />
+            <p>Thanks for using our app! If you have time, we'd love some feedback. Please share your thoughts by clicking the Feedback button below.<p/>
+            <input type="submit" class="btn btn-outline-light btn-lg" value="Feedback" name="action1" />
         </form>
+
+        <p>The playlist has been created on your spotify account. Go to spotify to find it.<p/>
+
+
+{%endblock%}        
