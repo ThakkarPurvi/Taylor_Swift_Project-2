@@ -1,0 +1,16 @@
+<style>
+	body { background: #e39ff6; }
+</style>
+<h2> The Story of Us - Taylor Swift Mix</h2>
+
+<!-- Question 5 -->
+
+<h3>Question 5 <h3/>
+    <h4>{{ question5 }}</h4>
+    <form method="post" action="{{url_question4_arg}}">
+        {% for key, value in options%}
+        <p>{{ key }}
+        <input type="submit" value={{ value }} name= 'action5' /> </p>
+        {% endfor %}
+    </form>
+
