@@ -17,6 +17,7 @@ songs = []
 def start_playlist():
     if request.method == 'POST':
         if request.form.get('action1') == 'START':
+            print("START")
             return redirect(url_for('handle_question1'))
         elif request.form.get('action2') == 'Feedback':
             return render_template('feedback.html')
