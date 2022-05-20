@@ -17,7 +17,6 @@ songs = []
 def start_playlist():
     if request.method == 'POST':
         if request.form.get('action1') == 'START':
-            print("START")
             return redirect(url_for('handle_question1'))
         elif request.form.get('action2') == 'Feedback':
             return render_template('feedback.html')
@@ -37,8 +36,8 @@ def handle_question1():
             model = Model()
             global songs 
             songs = model.get_songs(None)
-            print(songs)
-            return render_template("playlist.html", songs = songs)
+            is_added_on_spotify = False
+            return render_template('playlist.html', songs = songs, is_added_on_spotify = is_added_on_spotify)
         elif request.form.get('2') == '2.':
             return redirect(url_for('handle_question2'))
         else:
@@ -91,11 +90,16 @@ def handle_question4(answer):
         model = Model()
         global songs 
         songs = model.get_songs(answer)
-        return render_template("playlist.html", songs = songs)
+        is_added_on_spotify = False
+        return render_template('playlist.html', songs = songs, is_added_on_spotify =  is_added_on_spotify)
 
 @app.route('/feedback', methods=['GET','POST'])
 def feedback():
     return render_template("feedback.html")
+
+@app.route('/about')
+def about():
+    return render_template("about.html")
 
 @app.route('/spotifycallback', methods=["GET", "POST"])
 def spotifycallback():
@@ -112,7 +116,7 @@ def spotifycallback():
             song_uri = spotify.get_song_uri(song, spotify_token)
             spotify.add_song(song_uri, playlist_id, spotify_token)
         is_added_on_spotify = True
-        return render_template('playlist.html', is_added_on_spotify =  is_added_on_spotify )
+        return render_template('playlist.html', songs = songs, is_added_on_spotify = is_added_on_spotify )
     else :
         return render_template("index.html")
 
@@ -131,13 +135,10 @@ def add_playlist_spotify():
                                                 })
 
             return redirect(auth_response.url)
-        else:
-            print("Something got wrong")
     elif request.method == 'GET':
         is_added_on_spotify = False
-        return render_template('playlist.html', is_added_on_spotify =  is_added_on_spotify)
-    is_added_on_spotify = False
-    return render_template('playlist.html', is_added_on_spotify =  is_added_on_spotify )
+        return render_template('playlist.html', songs = songs, is_added_on_spotify = is_added_on_spotify)
+    return render_template('playlist.html', songs = songs, is_added_on_spotify = is_added_on_spotify )
 
 
 if __name__ == '__main__':

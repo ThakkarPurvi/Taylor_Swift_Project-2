@@ -6,7 +6,7 @@
 
 
 <section>
-    <div class="container-fluid-title-3">
+    <div class="container-fluid-title-playlist">
         <h2> These are the songs on your playlist! </h2>
         {% for song in songs%}
         <h3>{{song}}</h3>
@@ -14,11 +14,10 @@
     </div>
   </section>
 
-
   <section id="playlist">
-    <div class="container-fluid-form">
+    <div class="container-fluid-form-playlist">
     <form method="post" action="/playlist">
-        {% if is_added_on_spotify == False: %}
+        {% if is_added_on_spotify is false %}
         <p>Would you like to add your playlist on Spotify ?</p>
         <input type="submit" class="btn btn-outline-light btn-lg" value="Spotify" name="action2" />
         {% else %}
@@ -31,4 +30,4 @@
 </div>
 </section>
 
-    
+{%endblock%}

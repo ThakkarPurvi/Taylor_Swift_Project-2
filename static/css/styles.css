@@ -43,11 +43,6 @@ h2 {
   
 
 
-
-
-
-
-
 /* Title  Home page */
 
 .container-fluid-title {
@@ -139,7 +134,6 @@ h2 {
 }
 
 
-
 .container-fluid-form p {
     padding-top: 4%;
     padding-bottom: 1%;
@@ -161,24 +155,43 @@ h2 {
 }
 
 
-
-
 /* Playlist */
 
-.container-fluid-title-3 {
+.container-fluid-title-playlist {
     padding-top: 12%;
     padding-bottom: 2%;
     padding-left: 3%;
     padding-right: 3%;
 }
 
-.container-fluid-title-2 h2 {
-   font-size: 2.75em;
+.container-fluid-title-playlist h2 {
+   font-size: 3.5em;
+   color: #d6b0d6;
+   padding-bottom: 6%;
 }
 
+.container-fluid-title-playlist h3 {
+    font-size: 2.5em;
+    color: #8a5066;
+    padding-top: 2%;
+ }
 
 
+.container-fluid-form-playlist {
+    padding-bottom: 10%;
+    padding-top: 6%;
+    padding-left: 5%;
+    padding-right: 5%;
+    
+}
 
+.container-fluid-form-playlist p {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    color: #8a5066;
+    font-size: 1.25em;
+    font-weight: 500;
+}
 
 /* footer */
 
