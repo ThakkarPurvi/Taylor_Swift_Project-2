@@ -40,7 +40,6 @@ h2 {
     font-size: 2em;
     font-weight: 900;
   }
-  
 
 
 /* Title  Home page */
@@ -182,37 +181,54 @@ h2 {
     padding-top: 6%;
     padding-left: 5%;
     padding-right: 5%;
-    
+    text-align: left;
 }
 
 .container-fluid-form-playlist p {
-    padding-top: 1%;
-    padding-bottom: 1%;
+    padding-top: 3%;
+    padding-bottom: 3%;
     color: #8a5066;
     font-size: 1.25em;
     font-weight: 500;
 }
 
-/* footer */
-
-footer {
-    background-color: #faecbe;
-    color: #8a5066;
-    padding: 3% 5%;
+.btn-group-lg .btn,
+#playlist .btn-lg {
+    padding: .6em 1.4em;
+    font-size: 1.2em;
+    border-radius: .5em;
 }
 
-footer p {
+#playlist .btn{
+    font-weight: 400;
+    border: 2.5px solid;
+}
+
+
+
+
+
+/* footer */
+
+.container-footer {
+    background-color: #faecbe;
+    color: #8a5066;
+    padding: 3% 3%;
+}
+
+.container-footer p {
     font-size: 1.0em;
+    padding-bottom: 1%;
     font-weight: 400;
 }
 
-link-footer a {
+.container-footer a {
     color: #8a5066;
     padding: 2px 4px;
     text-decoration: none;
 }
 
-link-footer a:hover {
+.container-footer a:hover {
     color: #F7cacd;
     text-decoration: underline;
 }
