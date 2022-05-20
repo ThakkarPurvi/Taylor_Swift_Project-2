@@ -5,19 +5,29 @@
 {%block content%}
 
 
-<h2>These are the songs on your playlist! <h2/>
-    {% for song in songs%}
-    <h3>{{song}}</h3>
-    {% endfor %}
+<section>
+    <div class="container-fluid-title-playlist">
+        <h2> These are the songs on your playlist! </h2>
+        {% for song in songs%}
+        <h3>{{song}}</h3>
+        {% endfor %}
+    </div>
+  </section>
 
-        <form method="post" action="/playlist">
-            <p>Would you like to add your playlist on Spotify ?<p/>
-            <input type="submit" class="btn btn-outline-light btn-lg" value="Spotify" name="action2" />
-            <p>Thanks for using our app! If you have time, we'd love some feedback. Please share your thoughts by clicking the Feedback button below.<p/>
-            <input type="submit" class="btn btn-outline-light btn-lg" value="Feedback" name="action1" />
-        </form>
+  <section id="playlist">
+    <div class="container-fluid-form-playlist">
+    <form method="post" action="/playlist">
+        {% if is_added_on_spotify is false %}
+        <p>Would you like to add your playlist on Spotify ?</p>
+        <input type="submit" class="btn btn-outline-light btn-lg" value="Spotify" name="action2" />
+        {% else %}
+        <p>The playlist has been created on your spotify account. Go to spotify to find it.</p>
+        {% endif %}
+        <p>Thanks for using our app! If you have time, we'd love some feedback.
+        Please share your thoughts by clicking the Feedback button below.</p>
+        <input type="submit" class="btn btn-outline-light btn-lg" value="Feedback" name="action1" />
+    </form>
+</div>
+</section>
 
-        <p>The playlist has been created on your spotify account. Go to spotify to find it.<p/>
-
-
-{%endblock%}        
+{%endblock%}
