@@ -111,8 +111,8 @@ def spotifycallback():
         for song in songs:
             song_uri = spotify.get_song_uri(song, spotify_token)
             spotify.add_song(song_uri, playlist_id, spotify_token)
-            print(user_id)
-        return "check your spotify"
+        is_added_on_spotify = True
+        return render_template('playlist.html', is_added_on_spotify =  is_added_on_spotify )
     else :
         return render_template("index.html")
 
@@ -134,8 +134,11 @@ def add_playlist_spotify():
         else:
             print("Something got wrong")
     elif request.method == 'GET':
-        return render_template('playlist.html')
-    return render_template('playlist.html')
+        is_added_on_spotify = False
+        return render_template('playlist.html', is_added_on_spotify =  is_added_on_spotify)
+    is_added_on_spotify = False
+    return render_template('playlist.html', is_added_on_spotify =  is_added_on_spotify )
+
 
 if __name__ == '__main__':
     app.run(debug = True)

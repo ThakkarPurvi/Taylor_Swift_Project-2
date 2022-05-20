@@ -107,9 +107,6 @@ h2 {
 
 
 
-
-
-
 /* Question */
 
 .container-fluid-title-2 {
@@ -162,6 +159,25 @@ h2 {
     font-weight: 500;
     border: 2.5px solid;
 }
+
+
+
+
+/* Playlist */
+
+.container-fluid-title-3 {
+    padding-top: 12%;
+    padding-bottom: 2%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.container-fluid-title-2 h2 {
+   font-size: 2.75em;
+}
+
+
+
 
 
 /* footer */
