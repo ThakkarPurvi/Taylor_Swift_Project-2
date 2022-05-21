@@ -62,6 +62,39 @@ class TestDatabaseManager(TestCase):
         db = DatabaseManager(connection)
         db.create_random_playlist(nb_max_songs)
         db._query_random_songs.assert_called_once()
+        
+    @mock.patch('DatabaseManager.DatabaseManager._query_songs', return_value=["song"])
+    @mock.patch('DatabaseManager.DatabaseManager._manage_results_query', return_value=["song"])
+    def test_6_create_personalized_playlist(self, song, results):
+        vibe = Mock()
+        subject = Mock()
+        nb_max_songs = Mock()
+        connection = MagicMock()
+        db = DatabaseManager(connection)
+        db.create_personalized_playlist(vibe, subject, nb_max_songs)
+        db._query_songs.assert_called_once()
+        
+    @mock.patch('DatabaseManager.DatabaseManager._query_songs', return_value=["song"])
+    @mock.patch('DatabaseManager.DatabaseManager._manage_results_query', return_value=["song"])
+    def test_7_create_personalized_playlist(self, song, results):
+        vibe = Mock()
+        subject = Mock()
+        nb_max_songs = Mock()
+        connection = MagicMock()
+        db = DatabaseManager(connection)
+        db.create_personalized_playlist(vibe, subject, nb_max_songs)
+        db._manage_results_query.assert_called_once()
+    
+    @mock.patch('DatabaseManager.DatabaseManager._manage_results_query', return_value=["song"])
+    def test_8_create_personalized_playlist(self, song):
+        expected = ["song"]
+        vibe = Mock()
+        subject = Mock()
+        nb_max_songs = Mock()
+        connection = MagicMock()
+        db = DatabaseManager(connection)
+        result = db.create_personalized_playlist(vibe, subject, nb_max_songs)
+        self.assertEqual(expected, result)
 
 if __name__ == '__main__':
     main()
