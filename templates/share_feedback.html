@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{%extends "layout.html"%}
+{%block content%}
+
+<section>
+    <div class="container-fluid-form ">
+        <h1 class="title-heading"> Thank you for sharing your valuable feedback <h1/>
+            <form method="post" action="http://127.0.0.1:5000/fanclub_name">
+{% for key, value in A1%}
+{% endfor %}
+
+<body>
+    <br><form method="post" action="/share_feedback">
+                <h3>Which type of playlist did you like?</h3>
+            <h2><br><input type="submit" class="btn btn-outline-light btn-lg" value="Random Taylor Swift Playlist" name="fanclub" />&nbsp &nbsp<input type="submit" class="btn btn-outline-light btn-lg" value="Customized Playlist" name="fanclub" /></h2>
+
+                <h3>Would you like to listen to more Taylor Swift Songs?</h3>
+            <h2><br><input type="submit" class="btn btn-outline-light btn-lg" value="Yes" name="fanclub" />&nbsp &nbsp<input type="submit" class="btn btn-outline-light btn-lg" value="No" name="fanclub" /></h2>
+
+                <h3>How will you rate your experience today?</h3>
+            <h2><br><input type="submit" class="btn btn-outline-light btn-lg" value="Excellent" name="fanclub" />&nbsp &nbsp<input type="submit" class="btn btn-outline-light btn-lg" value="Good" name="fanclub" />&nbsp &nbsp<input type="submit" class="btn btn-outline-light btn-lg" value="Average" name="fanclub" /></h2>
+                                
+                <h3>Would you like to listen to other Artists?</h3>
+            <h2><br><input type="submit" class="btn btn-outline-light btn-lg" value="Yes" name="fanclub" />&nbsp &nbsp<input type="submit" class="btn btn-outline-light btn-lg" value="No" name="fanclub" /></h2>
+        
+            <form method="post" action="/fanclub_name">
+                <h2>If yes, please share the name of the artist:&nbsp &nbsp &nbsp <input type="text" name="name">&nbsp &nbsp &nbsp
+                    <input type="submit" class="btn btn-outline-light btn-lg" value="Submit" name="fanclub" /></h2>
+                    <br>       
+    <form method="post" action="/fanclub">
+        <h3>Join the Taylor Swift Fan Club by clicking below. &nbsp &nbsp<input type="submit" class="btn btn-outline-light btn-lg" value="Join the FanClub" name="fanclub" /></h3>
+    </form>
+    </form>
+    </form>
+    </body>
+</form>
+</div>
+</section>
+
+
+{%endblock%}

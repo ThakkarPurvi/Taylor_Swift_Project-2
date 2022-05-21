@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{%extends "layout.html"%}
+{%block content%}
+<div class="column"></div>
+<div class="column"></div>
+<img src="static/TY.png">
+<form method="post" action="/fanclub_name">
+<h1 class="title-heading">Join the Taylor Swift Fan Club by clicking below. &nbsp &nbsp<input type="submit" class="btn btn-outline-light btn-lg" value="Join the FanClub" name="fanclub" /></h3>
+</form>
+
+<body>
+    <br><br><br><h2>Thank you for trying Taylor Swift Mix &nbsp Today: <span id="datetime"></span></h2>             
+                <script>
+                    var dt = new Date();
+                    document.getElementById("datetime").innerHTML = dt.toLocaleString();
+                </script></p>
+    <h2>The playlist has been created on your spotify account. Go to spotify to find it.<p/></h2>
+</body>
+{%endblock%}    

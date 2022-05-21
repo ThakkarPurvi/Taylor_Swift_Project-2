@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{%extends "layout.html"%}
+{%block content%}
+<div class="column"></div>
+<div class="column"></div>
+<img src="static/TY.png">
+<h1>Project by CFG-Degree students</h1> 
+<head>
+<style>
+* {box-sizing: border-box;}
+body {font-family: Arial, Helvetica, sans-serif, #8a5066;}
+
+.column {
+  float: left;
+  width: 20%;
+  padding: 0 5px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width) {
+  .column {
+    width: 10%;
+    display: block;
+    margin-bottom: 0px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+<div class="row">
+    <div class="column"></div>
+  <div class="column">
+      <h3><img src="static/PT.png"></h3>
+      <h3><a href="https://www.linkedin.com/in/thakkarpurvilondon/">Purvi Thakkar</a></h3></div>
+      &nbsp &nbsp<div class="column">
+        <h3><img src="static/CS.png"></h3>
+        <h3><a href="https://github.com/carosaut">Caroline Sautterr</a></h3></div>
+        &nbsp &nbsp<div class="column">
+        <h3><img src="static/AV.jpg"></h3>
+        <h3><a href="https://github.com/aude11">Aude Vernet</a></h3></div>
+        </div>
+    </div>
+</body>
+
+<body>
+    <br><br><br><br><br><br><form method="post" action="/share_feedback">
+            <h3>Would you like to share your experience? &nbsp &nbsp<input type="submit" class="btn btn-outline-light btn-lg" value="Share" name="fanclub" /></h3>
+</body>
+<form method="post" action="/fanclub_name">
+    <h2>If yes, please share the name of the artist:&nbsp &nbsp &nbsp <input type="text" name="name">&nbsp &nbsp &nbsp
+        <input type="submit" class="btn btn-outline-light btn-lg" value="Submit" name="fanclub" /></h2>
+        <br>       
+<form method="post" action="/fanclub">
+<h3>Join the Taylor Swift Fan Club by clicking below. &nbsp &nbsp<input type="submit" class="btn btn-outline-light btn-lg" value="Join the FanClub" name="fanclub" /></h3>
+</form>
+        <body>
+            <br><br><br><h2>Thank you for trying Taylor Swift Mix &nbsp Today: <span id="datetime"></span></h2>             
+                        <script>
+                            var dt = new Date();
+                            document.getElementById("datetime").innerHTML = dt.toLocaleString();
+                        </script></p>
+            <h2>The playlist has been created on your spotify account. Go to spotify to find it.<p/></h2>
+                     
+</body>
+{%endblock%}      
