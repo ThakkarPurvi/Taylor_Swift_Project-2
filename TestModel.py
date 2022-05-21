@@ -1,4 +1,5 @@
 from unittest import mock
+from unittest.mock import patch, Mock, MagicMock
 from unittest import TestCase, main
 import io
 from Model import Model
@@ -33,9 +34,6 @@ class TestModel(TestCase):
         model = Model()
         result = model.get_songs(answer)
         self.assertEqual(expected, result)
-        
-        
-         decorated.deleteToDo.assert_called_once()
         
 if __name__ == '__main__':
     main()
