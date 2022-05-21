@@ -231,3 +231,18 @@ img {
     color: #F7cacd;
     text-decoration: underline;
 }
+
+.container a {
+    color: #8a5066;
+    padding: 2px 4px;
+    text-decoration: none;
+}
+
+.container a:hover {
+    color: #d6b0d6;
+    text-decoration: underline;
+}
+
+.container {
+    padding-bottom: 8%;
+}
