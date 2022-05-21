@@ -7,5 +7,8 @@ option_3_display = {"1. My current partner": "CP", "2. My ex": "EX", "3. So we'v
 fourth_question = "\nHow do you feel about them?\n"
 option_4_display = {"1. Great!":"P", "2. Ugh I hate them": "N", "3. It's complicated...": "IC"}
 
+
 questions_taylor = [first_question, second_question, third_question, fourth_question]
 options_taylor = [option_1_display , option_2_display , option_3_display , option_4_display]
+
+
