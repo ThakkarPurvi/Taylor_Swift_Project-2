@@ -1,5 +1,4 @@
 import mysql.connector
-import sys
 
 
 class DatabaseManager(): 
@@ -16,11 +15,7 @@ class DatabaseManager():
             ORDER BY RAND() 
             LIMIT {nb_max_songs}; 
             """.format(table_name = self.table_name, vibe_id=vibe, subject_id=subject, nb_max_songs=nb_max_songs)
-        cur = self.connection.cursor()
-        # add try handle error expection
-        cur.execute(query)
-        results = cur.fetchall()
-        cur.close()
+        results =  self._fetch_database(query)
         return results
     
     def _query_random_songs(self, nb_max_songs):
@@ -30,6 +25,10 @@ class DatabaseManager():
             ORDER BY RAND() \
             LIMIT {nb_max_songs}; 
             """.format(table_name = self.table_name, nb_max_songs=nb_max_songs)
+        results =  self._fetch_database(query)
+        return results
+
+    def _fetch_database(self, query):
         cur = self.connection.cursor()
         cur.execute(query)
         results = cur.fetchall()
@@ -38,13 +37,15 @@ class DatabaseManager():
     
     def create_personalized_playlist(self, vibe, subject, nb_max_songs):
         results = self._query_songs(vibe, subject, nb_max_songs)
-        list_of_songs = []
-        for result in results:
-            list_of_songs.append(result[2])
+        list_of_songs = self._manage_results_query(results)
         return list_of_songs
             
     def create_random_playlist(self, nb_max_songs):
         results = self._query_random_songs(nb_max_songs)
+        list_of_songs = self._manage_results_query(results)
+        return list_of_songs
+    
+    def _manage_results_query(self, results):
         list_of_songs = []
         for result in results:
             list_of_songs.append(result[2])
