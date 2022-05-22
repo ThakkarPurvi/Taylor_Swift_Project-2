@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 {%extends "layout.html"%}
 {%block content%}
 
@@ -10,22 +10,37 @@
 <section>
     <div class="container-fluid-form ">
     <form method="post" action="/feedback">
-                <p>Which type of playlist did you like?</p>
-            <input type="submit" class="btn btn-outline-light btn-lg" value="Random Taylor Swift Playlist" name="random" />
-            <input type="submit" class="btn btn-outline-light btn-lg" value="Customized Playlist" name="perso" />
-
-                <p>Would you like to listen to more Taylor Swift Songs?</p>
-            <input type="submit" class="btn btn-outline-light btn-lg" value="Yes" name="more_taylor" />
-            <input type="submit" class="btn btn-outline-light btn-lg" value="No" name="no_more_taylor" />
-
-                <p>How will you rate your experience today?</p>
-            <input type="submit" class="btn btn-outline-light btn-lg" value="Excellent" name="ex" />
-            <input type="submit" class="btn btn-outline-light btn-lg" value="Good" name="good" />
-            <input type="submit" class="btn btn-outline-light btn-lg" value="Average" name="av" />
-                                
-                <p>Would you like to listen to other Artists?</p>
-            <input type="submit" class="btn btn-outline-light btn-lg" value="Yes" name="yes_artist" />
-            <input type="submit" class="btn btn-outline-light btn-lg" value="No" name="no_artist" />
+            <label for="playlist_type">Which type of playlist did you like?</label>
+            <br>
+            <textarea name="playlist_type"
+                      placeholder="Random or Customized Taylor Swift Playlist"
+                      rows="1"
+                      cols="60"
+                      >{{ request.form['playlist_type'] }}</textarea>
+            <br>
+    
+            <label for="more_songs">Would you like to listen to more Taylor Swift Songs?</label>
+            <br>
+            <input type="text" name="more_songs"
+                   placeholder="Yes or No"
+                   value="{{ request.form['more_songs'] }}"></input>
+            <br>
+            <label for="rate">How will you rate your experience today?</label>
+            <br>
+            <input type="text" name="rate"
+                   placeholder="Good or Average"
+                   value="{{ request.form['rate'] }}"></input>
+            <br>
+            <label for="artist">Which artists would you like to listen to?</label>
+            <br>
+            <input type="text" name="artist"
+                   placeholder="Name"
+                   value="{{ request.form['artist'] }}"></input>
+            <br>
+            <br>
+            <br>
+            <br>
+           <button type="submit" class="btn btn-outline-light btn-lg" >Submit</button>
         </form>
     </div>
     </section>

@@ -10,6 +10,14 @@ from Model import Model
 
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'your secret key'
+
+
+messages = {'playlist_type': None,
+             'more_songs': None,
+             'rate': None,
+             'artist': None
+             }
 
 songs = []
 
@@ -95,7 +103,14 @@ def handle_question4(answer):
 
 @app.route('/feedback', methods=['GET','POST'])
 def feedback():
-    return render_template("feedback.html")
+    if request.method == 'POST':
+        messages['playlist_type'] = request.form['playlist_type']
+        messages['more_songs'] = request.form['more_songs']
+        messages['rate'] = request.form['rate']
+        messages['artist'] = request.form['artist']
+        # add feedback to database
+        return render_template("index.html")
+    return render_template('feedback.html')
 
 @app.route('/about')
 def about():
